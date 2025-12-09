@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Science Learner – Portfolio</title>
+
+<style>
+:root {
+    --bg: #020617;
+    --bg-alt: #020818;
+    --card: rgba(15, 23, 42, 0.9);
+    --accent: #38bdf8;
+    --accent-soft: rgba(56, 189, 248, 0.18);
+    --accent-strong: rgba(56, 189, 248, 0.9);
+    --text-main: #e5e7eb;
+    --text-muted: #9ca3af;
+    --border-subtle: rgba(148, 163, 184, 0.6);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.15), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(8,47,73,0.9), #020617);
+    color: var(--text-main);
+    scroll-behavior: smooth;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(18px);
+    background: linear-gradient(to bottom, rgba(15,23,42,0.96), rgba(15,23,42,0.8));
+    border-bottom: 1px solid rgba(148,163,184,0.45);
+    padding: 10px 16px;
+}
+
+.nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: 16px;
+}
+
+.logo-orb {
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: radial-gradient(circle, var(--accent-strong), transparent 65%);
+    box-shadow: 0 0 18px rgba(56,189,248,0.9);
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: 10px;
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    transition: 0.24s ease;
+}
+
+nav a:hover {
+    color: var(--text-main);
+    border-color: rgba(148,163,184,0.75);
+    background: rgba(15,23,42,0.95);
+}
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 22px 16px 40px;
+}
+
+/* Hero */
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 26px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.hero-left {
+    min-width: 0;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(148,163,184,0.6);
+    font-size: 11px;
+    color: var(--text-muted);
+    background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.45), rgba(15,23,42,0.98));
+}
+
+.pill-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #22c55e;
+    box-shadow: 0 0 12px rgba(34,197,94,0.9);
+}
+
+.hero h1 {
+    font-size: 28px;
+    margin: 12px 0 8px;
+}
+
+.hero-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btn-primary, .btn-outline {
+    font-size: 14px;
+    border-radius: 999px;
+    padding: 9px 16px;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.22s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+    color: #020617;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(56,189,248,0.32);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(56,189,248,0.5);
+}
+
+.btn-outline {
+    border-color: rgba(148,163,184,0.8);
+    color: var(--text-main);
+    background: radial-gradient(circle at top left, rgba(15,23,42,0.9), rgba(15,23,42,0.98));
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    background: rgba(15,23,42,1);
+}
+
+/* Hero right */
+.hero-right {
+    justify-self: center;
+}
+
+.hero-card {
+    width: 260px;
+    height: 260px;
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at top, rgba(56,189,248,0.32), transparent 60%),
+        radial-gradient(circle at bottom, #020617, #020617);
+    border: 1px solid rgba(148,163,184,0.6);
+    box-shadow: 0 18px 45px rgba(15,23,42,0.95);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-inner {
+    width: 82%;
+    height: 82%;
+    border-radius: 22px;
+    border: 1px solid rgba(148,163,184,0.55);
+    background: radial-gradient(circle at top left, rgba(248,250,252,0.06), rgba(15,23,42,0.96));
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    text-align: left;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.hero-inner-title {
+    font-size: 14px;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.hero-metric-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 11px;
+}
+
+.hero-metric-label {
+    color: var(--text-muted);
+}
+
+.hero-metric-value {
+    color: var(--accent);
+}
+
+.hero-orb {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(56,189,248,0.9), transparent 70%);
+    top: -14px;
+    right: -12px;
+    opacity: 0.9;
+    filter: blur(0.5px);
+}
+
+.hero-ring {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 999px;
+    border: 1px dashed rgba(148,163,184,0.5);
+    top: 26px;
+    left: 18px;
+    opacity: 0.35;
+}
+
+/* Sections */
+.section {
+    margin-top: 30px;
+}
+
+.section-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-title span {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(56,189,248,0.9);
+}
+
+.section-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background: radial-gradient(circle at top left, rgba(15,23,42,0.98), rgba(15,23,42,0.96));
+    border-radius: 18px;
+    padding: 18px 16px;
+    border: 1px solid rgba(148,163,184,0.5);
+    box-shadow: 0 14px 36px rgba(15,23,42,0.95);
+    backdrop-filter: blur(16px);
+    transition: 0.24s ease;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 50px rgba(15,23,42,1);
+    border-color: var(--accent-soft);
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 6px;
+    font-size: 15px;
+    color: var(--text-main);
+}
+
+.skill-pill {
+    padding: 7px 11px;
+    border-radius: 999px;
+    border: 1px solid rgba(148,163,184,0.7);
+    background: radial-gradient(circle at top left, rgba(15,23,42,0.9), rgba(15,23,42,1));
+    font-size: 12px;
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.skill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+}
+
+/* Prediction form */
+.predict-card {
+    border: 1px solid rgba(56,189,248,0.55);
+    box-shadow: 0 18px 60px rgba(8,47,73,0.95);
+}
+
+.predict-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin: 12px 0 16px;
+}
+
+.predict-input {
+    background: rgba(15,23,42,0.96);
+    border-radius: 10px;
+    border: 1px solid rgba(148,163,184,0.7);
+    padding: 7px 10px;
+    font-size: 12px;
+    color: var(--text-main);
+}
+
+.predict-input::placeholder {
+    color: rgba(148,163,184,0.85);
+}
+
+#result {
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+/* Contact */
+.contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.contact-pill {
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(148,163,184,0.65);
+    background: radial-gradient(circle at top left, rgba(15,23,42,0.95), rgba(15,23,42,1));
+}
+
+/* Footer */
+footer {
+    max-width: 1100px;
+    margin: 26px auto 26px;
+    padding: 0 16px;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 780px) {
+    .hero {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .hero-right {
+        order: -1;
+        justify-self: flex-start;
+    }
+    .hero-card {
+        width: 220px;
+        height: 220px;
+    }
+    .hero h1 {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="nav-inner">
+        <div class="logo">
+            <div class="logo-orb"></div>
+            <div>DATA SCIENCE <span style="color:var(--accent)">LEARNER</span></div>
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#predict">Prediction</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- HERO / HOME -->
+    <section id="home" class="hero">
+        <div class="hero-left">
+            <div class="pill">
+                <div class="pill-dot"></div>
+                Blue Neon Tech Portfolio Template
+            </div>
+            <h1>Building data‑driven projects with clean, modern design.</h1>
+            <p class="hero-sub">
+                This layout is designed for a machine learning and data science portfolio.
+                You can safely update the text and sections later to match your own journey,
+                projects and ambitions.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-primary">Explore Projects</a>
+                <a href="#about" class="btn-outline">View Skills</a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="hero-card">
+                <div class="hero-orb"></div>
+                <div class="hero-ring"></div>
+                <div class="hero-inner">
+                    <div class="hero-inner-title">Heart Disease Prediction</div>
+                    <div style="font-size:12px;">
+                        Logistic Regression model exposed as an API for interactive prediction
+                        from this UI.
+                    </div>
+                    <div class="hero-metric-row">
+                        <div class="hero-metric-label">Model Type</div>
+                        <div class="hero-metric-value">Binary Classifier</div>
+                    </div>
+                    <div class="hero-metric-row">
+                        <div class="hero-metric-label">Tech Stack</div>
+                        <div class="hero-metric-value">Python · Flask · ML</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT & SKILLS -->
+    <section id="about" class="section">
+        <div class="section-title">
+            <span></span>
+            <div>About & Skillset</div>
+        </div>
+        <div class="section-sub">
+            This template is focused on the tools and concepts used in modern data science,
+            from core programming to machine learning and deployment.
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Profile</h3>
+                <p>
+                    A dedicated <b>Data Science Learner</b> exploring Python, statistics and
+                    applied machine learning. You can customise this paragraph to describe
+                    your own background and goals.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Key Skills</h3>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;">
+                    <div class="skill-pill"><span class="skill-dot"></span>Python</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>R Language</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>Statistics</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>NumPy</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>Pandas</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>TensorFlow</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>Matplotlib</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>Seaborn</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>OpenCV</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>Machine Learning</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>Deep Learning</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>SQL</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>Big Data</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>Git</div>
+                    <div class="skill-pill"><span class="skill-dot"></span>GitHub</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+        <div class="section-title">
+            <span></span>
+            <div>Projects</div>
+        </div>
+        <div class="section-sub">
+            A highlight of applied machine learning work. You can add more projects
+            following this pattern.
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Heart Disease Prediction</h3>
+                <p>
+                    A binary classification model that estimates the risk of heart disease
+                    based on structured health data such as age, blood pressure,
+                    cholesterol levels and additional features.
+                </p>
+                <ul>
+                    <li>Data cleaning and preprocessing for high‑quality inputs.</li>
+                    <li>Exploratory analysis to understand feature importance.</li>
+                    <li>Trained Logistic Regression with tuned hyperparameters.</li>
+                    <li>Evaluated using accuracy and additional metrics.</li>
+                    <li>Exposed as a Flask API to connect with this UI.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREDICTION -->
+    <section id="predict" class="section">
+        <div class="section-title">
+            <span></span>
+            <div>Prediction Demo</div>
+        </div>
+        <div class="section-sub">
+            This section holds a demo form for sending numeric features to the backend API.
+            Once the backend is deployed, connect the URL in the script to get live results.
+        </div>
+
+        <div class="card predict-card">
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">
+                Example: provide up to 10 numeric feature values. The exact order and count
+                should match your trained model.
+            </div>
+
+            <div class="predict-grid">
+                <input id="f1"  class="predict-input" placeholder="Feature 1">
+                <input id="f2"  class="predict-input" placeholder="Feature 2">
+                <input id="f3"  class="predict-input" placeholder="Feature 3">
+                <input id="f4"  class="predict-input" placeholder="Feature 4">
+                <input id="f5"  class="predict-input" placeholder="Feature 5">
+                <input id="f6"  class="predict-input" placeholder="Feature 6">
+                <input id="f7"  class="predict-input" placeholder="Feature 7">
+                <input id="f8"  class="predict-input" placeholder="Feature 8">
+                <input id="f9"  class="predict-input" placeholder="Feature 9">
+                <input id="f10" class="predict-input" placeholder="Feature 10">
+            </div>
+
+            <button onclick="predict()">Run Prediction</button>
+            <div id="result"></div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+        <div class="section-title">
+            <span></span>
+            <div>Contact</div>
+        </div>
+        <div class="section-sub">
+            Simple placeholders that you can update later with your own links.
+        </div>
+
+        <div class="card">
+            <div class="contact-row">
+                <div class="contact-pill">Email: example@mail.com</div>
+                <div class="contact-pill">LinkedIn: profile-link</div>
+                <div class="contact-pill">GitHub: github-username</div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    Blue Neon Tech portfolio template – replace the placeholder text when you are ready,
+    and connect your deployed backend for live predictions.
+</footer>
+
+<script>
+async function predict() {
+    const api = "YOUR_BACKEND_URL/predict"; // replace when backend is deployed
+
+    if (api.includes("YOUR_BACKEND_URL")) {
+        document.getElementById("result").innerHTML =
+            "⚠️ Backend not connected. Add your deployed API URL in the script.";
+        return;
+    }
+
+    const features = [
+        Number(document.getElementById("f1").value),
+        Number(document.getElementById("f2").value),
+        Number(document.getElementById("f3").value),
+        Number(document.getElementById("f4").value),
+        Number(document.getElementById("f5").value),
+        Number(document.getElementById("f6").value),
+        Number(document.getElementById("f7").value),
+        Number(document.getElementById("f8").value),
+        Number(document.getElementById("f9").value),
+        Number(document.getElementById("f10").value)
+    ];
+
+    try {
+        const res = await fetch(api, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ features: features })
+        });
+
+        const data = await res.json();
+
+        let label = (data.prediction === 1)
+            ? "💓 Heart Disease"
+            : "✔ No Heart Disease";
+
+        document.getElementById("result").innerHTML =
+            label + "<br><span style='font-size:12px;color:#9ca3af;'>Raw: "
+            + JSON.stringify(data) + "</span>";
+    } catch (err) {
+        document.getElementById("result").innerHTML =
+            "Request failed. Please check your backend URL.";
+    }
+}
+</script>
+
+</body>
+</html>
